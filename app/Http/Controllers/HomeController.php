@@ -113,17 +113,23 @@ class HomeController extends Controller
             ->join('company_register', 'company_register.id', '=', 'company_job_post.company_id');
 
         if ($designation != "") {
+            $designation=trim(strtoupper($designation));
             $job =  $job->where('job_title', $designation);
         }
 
         if ($experience != "") {
+            $experience=trim(strtoupper($experience));
             $job =  $job->where('experience_from', $experience);
         }
         if ($education != "") {
+            $education=trim(strtoupper($education));
             $job =  $job->where('qualification', $education);
         }
         if ($location != "") {
-            $job =  $job->where('location', $location);
+            $location=trim(strtoupper($location));
+             $split = explode(",", $location);
+             $job =  $job->whereIn('location', $split);
+         //   $job =  $job->where('location', $location);
         }
 
         $job = $job->get();
@@ -157,6 +163,9 @@ class HomeController extends Controller
         $skills = $request->skills;
         $education = $request->education;
         $location = $request->location;
+        // dd($location);
+        // $split = explode(",", $location);
+
 
         $where1 = "";
 
@@ -164,17 +173,25 @@ class HomeController extends Controller
             ->select('jobseeker_register.*');
 
         if ($specialization != "") {
+            $specialization=trim(strtoupper($specialization));
             $student =  $student->where('specialization', $specialization);
         }
 
         if ($skills != "") {
+            $skills=trim(strtoupper($skills));
             $student =  $student->where('skill', $skills);
         }
         if ($education != "") {
+            $education=trim(strtoupper($education));
             $student =  $student->where('education', $education);
         }
         if ($location != "") {
-            $student =  $student->where('int_job_location', $location);
+            $location=trim(strtoupper($location));
+            $split = explode(",", $location);
+
+
+            $student =  $student->whereIn('int_job_location', $split);
+          //  $student =  $student->where('int_job_location', $location);
         }
 
         $student = $student->get();
