@@ -28,54 +28,49 @@
 
 
         </div>
+        @if(is_null($consultancy))
+
+        @else
         <div class="row page-title text-center wow zoomInDown" data-wow-delay="1s">
 
             <h2>Consultancy Profile</h2>
 
         </div>
 
+
+
+
+        <div class="row how-it-work text-center">
+
+            @foreach($consultancy as $value)
+            <div class="col-md-3">
+                <div class="single-work wow fadeInUp" data-wow-delay="0.8s">
+
+                    {{--  {{ Request::segment(1) }} --}}
+                    @if ($value->upload_image==null)
+                    <img src="{{ URL::asset('/resources/dist/img/con_img.png')}}" style="height: 160px; width: 160px;"
+                        width="150px" height="150px" alt="">
+
+                    @else
+                    <img src="{{ env('APP_URL1') }}/uploads/consultancy/{{ $value->upload_image }}"
+                        style="height: 160px; width: 160px;" width="150px" height="150px" alt="">
+                    @endif
+
+                    <h3>{{ $value->cunsultancy_name }}</h3>
+                    {{--  <span>Designation :- {{ $value->designation }}</span> --}}
+                    <br><br><br>
+
+                    <span><i class="fa fa-envelope"></i> {{ $value->email }}</span><br>
+                    <span><i class="fa fa-mobile"></i> {{ $value->mobile }}</span>
+                </div>
+            </div>
+            @endforeach
+            @endif
+
+        </div>
+
     </div>
     <hr>
-
-
-    <div class="row how-it-work text-center">
-        @if(is_null($consultancy))
-        <div class="col-md-12">
-            <div class="single-work  wow fadeInUp" data-wow-delay="0.9s">
-
-                <h3>No Any Employees Profile</h3>
-
-            </div>
-        </div>
-        @else
-        @foreach($consultancy as $value)
-        <div class="col-md-3">
-            <div class="single-work wow fadeInUp" data-wow-delay="0.8s">
-
-                {{--  {{ Request::segment(1) }} --}}
-                @if ($value->upload_image==null)
-                <img src="{{ URL::asset('/resources/dist/img/con_img.png')}}" style="height: 160px; width: 160px;"
-                    width="150px" height="150px" alt="">
-
-                @else
-                <img src="{{ env('APP_URL1') }}/uploads/consultancy/{{ $value->upload_image }}"
-                    style="height: 160px; width: 160px;" width="150px" height="150px" alt="">
-                @endif
-
-                <h3>{{ $value->cunsultancy_name }}</h3>
-                {{--  <span>Designation :- {{ $value->designation }}</span> --}}
-                <br><br><br>
-
-                <span>Email :- {{ $value->email }}</span><br>
-                <span>Mobile No. :- {{ $value->mobile }}</span>
-            </div>
-        </div>
-        @endforeach
-        @endif
-
-    </div>
-
-
 
 </div>
 

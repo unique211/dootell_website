@@ -15,31 +15,17 @@
             <h2>Available jobs for you</h2>
         </div>
         <div class="row jobs">
+            @if(is_null($job_post))
+
+            @else
             <div class="col-md-12">
                 <div class="job-posts table-responsive">
                     <table class="table">
-                        @if(is_null($job_post))
-                        <tr class="odd wow fadeInUp" data-wow-delay="1s">
 
-                            <td class="tbl-title">
-                                <h4>No Any Jobs Available</h4>
-                            </td>
-                            {{--  <td>
-                            <p>dribbble community</p>
-                        </td>
-                        <td>
-                            <p><i class="icon-location"></i>San Franciso, USA</p>
-                        </td>
-                        <td>
-                            <p>&dollar; 14000</p>
-                        </td>
-                        <td class="tbl-apply"><a href="#">Apply now</a></td>  --}}
-                        </tr>
-                        @else
                         @foreach($job_post as $value)
                         <tr class="odd wow fadeInUp" data-wow-delay="1s">
                             <td class="tbl-logo">
-                                {{-- <img src="{{ URL::asset('/resources/dist/img/job-logo1.png')}}" alt=""> --}}
+
 
                                 @if ($value->logo==null)
                                 <img src="{{ URL::asset('/resources/dist/img/job-logo1.png')}}" alt="">
@@ -71,14 +57,14 @@
                                         class="fa fa-eye"></i> </a></td>
                         </tr>
                         @endforeach
-                        @endif
 
                     </table>
                 </div>
                 <div class="more-jobs">
-                    <a href=""> <i class="fa fa-refresh"></i>View more jobs</a>
+                    <a href="#"> <i class="fa fa-refresh"></i>View more jobs</a>
                 </div>
             </div>
+            @endif
 
         </div>
     </div>
