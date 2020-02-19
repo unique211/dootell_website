@@ -8,6 +8,9 @@
 
 <div class="content-area">
     <div class="container">
+        @if(is_null($students))
+
+        @else
 
         <div class="row page-title text-center wow zoomInDown" data-wow-delay="1s">
 
@@ -15,15 +18,7 @@
 
         </div>
         <div class="row how-it-work text-center">
-            @if(is_null($students))
-            <div class="col-md-12">
-                <div class="single-work  wow fadeInUp" data-wow-delay="0.9s">
 
-                    <h3>No Any Job Seekers Profile</h3>
-
-                </div>
-            </div>
-            @else
             @foreach($students as $value)
             <div class="col-md-3">
                 <div class="single-work wow fadeInUp" data-wow-delay="0.8s">
@@ -42,14 +37,15 @@
                     <span>Specification :- {{ $value['specialization'] }}</span>
                     <br><br><br>
 
-                    <span>Email :- {{ $value['email'] }}</span><br>
-                    <span>Mobile No. :- {{ $value['mobile'] }}</span>
+                    <span><i class="fa fa-envelope"></i> {{ $value['email'] }}</span><br>
+                    <span><i class="fa fa-mobile"></i> {{ $value['mobile'] }}</span>
                 </div>
             </div>
             @endforeach
-            @endif
+
 
         </div>
+        @endif
     </div>
     <hr>
 
